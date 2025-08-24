@@ -1,9 +1,18 @@
-addEventListener('fetch', event => {
-  const url = new URL(event.request.url);
-  thisProxyServerUrlHttps = `${url.protocol}//${url.hostname}/`;
-  thisProxyServerUrl_hostOnly = url.host;
-  event.respondWith(handleRequest(event.request))
-})
+// addEventListener('fetch', event => {
+//   const url = new URL(event.request.url);
+//   thisProxyServerUrlHttps = `${url.protocol}//${url.hostname}/`;
+//   thisProxyServerUrl_hostOnly = url.host;
+//   event.respondWith(handleRequest(event.request))
+// })
+
+export default {
+  fetch(request, env, ctx) {
+    const url = new URL(request.url);
+    thisProxyServerUrlHttps = `${url.protocol}//${url.hostname}/`;
+    thisProxyServerUrl_hostOnly = url.host;
+    return handleRequest(request)
+  }
+}
 
 
 const str = "/";
